@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 212471435511182644}
   - component: {fileID: 95610382597685796}
   - component: {fileID: 114331256453087886}
-  - component: {fileID: 114935198855246914}
   - component: {fileID: 50817738561083664}
+  - component: {fileID: 114557083589409024}
+  - component: {fileID: 114971182939921358}
   m_Layer: 0
   m_Name: RGirl
   m_TagString: Untagged
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shd: {fileID: 4222144638031770, guid: 2ea44c9a783392748894261d6dbb258c, type: 2}
---- !u!114 &114935198855246914
+--- !u!114 &114557083589409024
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,13 +103,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1771480283201584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bcf2a9c97a6d6247bcffcf9f78e6e04, type: 3}
+  m_Script: {fileID: 11500000, guid: 17a00da848485364692ce439bb3f6be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 1
-  maxSpeed: 7
-  jumpTakeOffSpeed: 7
+  raycastDistance: 0.1
+  minGroundNormalY: 0.5
+--- !u!114 &114971182939921358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771480283201584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046c8fc58a06d234eafb120ac8878926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+  jumpLaunchSpeed: 900
+  gravity: 500
 --- !u!212 &212471435511182644
 SpriteRenderer:
   m_ObjectHideFlags: 1

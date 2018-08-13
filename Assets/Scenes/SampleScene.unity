@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4855229305774310, guid: ecd279131bcfe214cbab76b815910877, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.199
+      value: 1.73
       objectReference: {fileID: 0}
     - target: {fileID: 4855229305774310, guid: ecd279131bcfe214cbab76b815910877, type: 2}
       propertyPath: m_LocalPosition.z
@@ -154,8 +154,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 50817738561083664, guid: ecd279131bcfe214cbab76b815910877,
         type: 2}
-      propertyPath: m_Constraints
-      value: 4
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114971182939921358, guid: ecd279131bcfe214cbab76b815910877,
+        type: 2}
+      propertyPath: gravity
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114971182939921358, guid: ecd279131bcfe214cbab76b815910877,
+        type: 2}
+      propertyPath: jumpLaunchSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114971182939921358, guid: ecd279131bcfe214cbab76b815910877,
+        type: 2}
+      propertyPath: speed
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecd279131bcfe214cbab76b815910877, type: 2}
@@ -409,7 +424,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1154269198
 SpriteRenderer:
@@ -495,23 +510,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!1 &1234609778 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1771480283201584, guid: ecd279131bcfe214cbab76b815910877,
-    type: 2}
-  m_PrefabInternal: {fileID: 187617979}
---- !u!70 &1234609785
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1234609778}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0903171, y: 0.7856137}
-  m_Size: {x: 0.4205944, y: 1.9893106}
-  m_Direction: 0
