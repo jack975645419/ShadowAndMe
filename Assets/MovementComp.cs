@@ -44,7 +44,7 @@ public class MovementComp : MonoBehaviour {
         nextMovement = Vector2.zero;
         velocity = (curPosition - lastPosition) / Time.fixedDeltaTime;
 
-        Debug.Log("velocity:"+velocity);
+        //Debug.Log("velocity:"+velocity);
     }
 
     public void Move(Vector2 movement)
