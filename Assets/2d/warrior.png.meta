@@ -105,12 +105,12 @@ TextureImporter:
       name: warrior_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 105
-        width: 37
-        height: 71
+        x: 16.204187
+        y: 100
+        width: 44.795815
+        height: 84.30626
       alignment: 9
-      pivot: {x: 0.76307666, y: 0.13440952}
+      pivot: {x: 0.6762888, y: 0.16814508}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -125,12 +125,12 @@ TextureImporter:
       name: warrior_1
       rect:
         serializedVersion: 2
-        x: 88
-        y: 162
-        width: 80
-        height: 62
+        x: 83
+        y: 157
+        width: 90
+        height: 72
       alignment: 9
-      pivot: {x: 0.4999999, y: 0.12204299}
+      pivot: {x: 0.49999994, y: 0.17453702}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,12 +145,12 @@ TextureImporter:
       name: warrior_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 108
-        width: 32
-        height: 44
+        x: 59
+        y: 103
+        width: 42
+        height: 54
       alignment: 9
-      pivot: {x: 0.7140541, y: 0.79496455}
+      pivot: {x: 0.64559466, y: 0.7267352}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: warrior_3
       rect:
         serializedVersion: 2
-        x: 107
-        y: 100
-        width: 54
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 102
+        y: 95
+        width: 64
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -185,12 +185,12 @@ TextureImporter:
       name: warrior_4
       rect:
         serializedVersion: 2
-        x: 172
-        y: 120
-        width: 45
-        height: 40
+        x: 167
+        y: 115
+        width: 55
+        height: 50
       alignment: 9
-      pivot: {x: 0.20357801, y: 0.76137125}
+      pivot: {x: 0.2574729, y: 0.70909697}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: warrior_5
       rect:
         serializedVersion: 2
-        x: 75
-        y: 52
-        width: 35
-        height: 40
+        x: 70
+        y: 47
+        width: 45
+        height: 50
       alignment: 9
-      pivot: {x: 0.7678092, y: 0.7793972}
+      pivot: {x: 0.70829606, y: 0.7235177}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: warrior_6
       rect:
         serializedVersion: 2
-        x: 152
-        y: 56
-        width: 37
-        height: 40
+        x: 147
+        y: 51
+        width: 47
+        height: 50
       alignment: 9
-      pivot: {x: 0.1882048, y: 0.770384}
+      pivot: {x: 0.2545442, y: 0.7163072}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,6 +252,6 @@ TextureImporter:
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
-  userData: 
+  userData: 636701887750230640
   assetBundleName: 
   assetBundleVariant: 
