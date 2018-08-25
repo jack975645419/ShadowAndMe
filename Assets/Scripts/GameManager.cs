@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MTool
 {
+    /// <summary>
+    /// 此函数的v的z的含义是希望对应的游戏世界平面的z值
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public static Vector3 ScreenToWorld(Vector3 v)
     {
         v.z = Camera.main.WorldToScreenPoint(v).z;

@@ -27,9 +27,7 @@ public class FingerEffectManager : Singleton<FingerEffectManager> {
     {
         if (!FingerEffects.ContainsKey(g.fingerIndex))
         {
-            Vector3 p = g.position;
-            p.z = this.transform.position.z;
-            var ps = Instantiate(ParticleClass, MTool.ScreenToWorld(p), Quaternion.identity);
+            var ps = Instantiate(ParticleClass, MTool.ScreenToWorld(g.position), Quaternion.identity);
             FingerEffects.Add(g.fingerIndex, ps.GetComponent<ParticleSystem>());
         }
     }
@@ -42,9 +40,7 @@ public class FingerEffectManager : Singleton<FingerEffectManager> {
     public void OnSwipe(Gesture g)
     {
         CreateEffectByGestureIfNotExist(g);
-        Vector3 p = g.position;
-        p.z = this.transform.position.z;
-        FingerEffects[g.fingerIndex].gameObject.transform.position = MTool.ScreenToWorld(p);
+        FingerEffects[g.fingerIndex].gameObject.transform.position = MTool.ScreenToWorld(g.position);
         var emission =FingerEffects[g.fingerIndex].emission;
         emission.rateOverDistance = 80;
     }

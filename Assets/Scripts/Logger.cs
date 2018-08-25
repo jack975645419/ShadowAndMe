@@ -13,6 +13,7 @@ public class Logger : Singleton<Logger> {
     private Dictionary<int, SingleTimer> TimersForInfoShow = new Dictionary<int, SingleTimer>();
     //注意事项：句柄0-10保留给手指信息打印
 
+    public GameObject Drawer = null;
 
     /// <summary>
     /// 根据句柄在屏幕上显示信息，如果句柄号是-1，则表示是临时信息。同一句柄后显示的信息将会覆盖已有的信息。
@@ -44,6 +45,8 @@ public class Logger : Singleton<Logger> {
         UpdateInfoText();
     }
 
+
+
     private void Update()
     {
         //Debug.DrawLine(new Vector3(0, 0, 0), new Vector3(1000, 1000, 1));
@@ -61,18 +64,39 @@ public class Logger : Singleton<Logger> {
         LogText.text = info;
     }
 
-    public LineRenderer DrawLine(Vector3 start, Vector3 end, Color? color = null, float lifeTime = 5000)
+    //维护每一个Line对应的计时器
+    Dictionary<LineRenderer, SingleTimer> TimerForLines = new Dictionary<LineRenderer, SingleTimer>();
+    public void DrawLine(LineRenderer line, Vector3[] screenPositions, Color? color = null, float lifeTime = 5000)
     {
-        var line = gameObject.AddComponent<LineRenderer>();
-        line.SetPositions(new Vector3[] { start, end });
+        for(int k = 0; k<screenPositions.Length; k++)
+        {
+            screenPositions[k] = MTool.ScreenToWorld(screenPositions[k]);
+        }
+
+        //绘制
+        line.SetPositions(screenPositions);
+        line.enabled = true;
         if (color == null) color = Color.red;
         line.startColor = (Color)color;
         line.endColor = (Color)color;
-        Destroy(line, lifeTime);
-        return line;
+        line.startWidth = 0.14f;
+
+        //设置倒计时关闭
+        if(!TimerForLines.ContainsKey(line))
+        {
+            SingleTimer timer = new SingleTimer(lifeTime, DisableLine, false, false, line);
+            TimerForLines.Add(line, timer);
+        }
+        TimerForLines[line].Interval = lifeTime;
+        TimerManager.Instance.StartTimer(TimerForLines[line]);
+    }
+    public void DisableLine(params object[] Params)
+    {
+        var line = Params[0] as LineRenderer;
+        line.enabled = false;
     }
 
-
+    private LineRenderer[] Lines = new LineRenderer[10];
 
     public void LogHelloworld(Gesture gesture)
     {
@@ -87,6 +111,13 @@ public class Logger : Singleton<Logger> {
         EasyTouch.On_SwipeStart += ShowGesture;
         EasyTouch.On_SwipeEnd += ShowGesture;
         //EasyTouch.On_TouchDown += LogHelloworld;
+
+        //初始化所有Draw组件
+        for(int k = 0; k<10; k++)
+        {
+            Lines[k] = Instantiate(Drawer).GetComponent<LineRenderer>();
+            Lines[k].enabled = false;
+        }
     }
 
     public void OnTouchDown(Gesture g)
@@ -96,8 +127,8 @@ public class Logger : Singleton<Logger> {
     public void ShowGesture(Gesture g)
     {
         Debug.Log(string.Format("当前TouchDown信息：\ng.actionTime:{0}\ng.fingerIndex:{1}\ng.pickedObject:{2}\ng.position:{3}\ng.swipeLength:{4}\ng.swipeVector:{5}\ng.touchCount:{6}\ng.twistAngle:{7}\ng.twoFingerDistance:{8}\n\n", g.actionTime, g.fingerIndex, g.pickedObject != null ? g.pickedObject.ToString() : "null", g.position.ToString(), g.swipeLength, g.swipeVector.ToString(), g.touchCount, g.twistAngle, g.twoFingerDistance));
-
-        Debug.DrawLine(Camera.main.ScreenToWorldPoint((Vector3)g.startPosition), Camera.main.ScreenToWorldPoint((Vector3)g.position));
+        
+        DrawLine( Lines[g.fingerIndex], new Vector3[] { g.startPosition, g.position }, Color.yellow, 2);
 
         if(!InfoToShow.ContainsKey(g.fingerIndex))
         {

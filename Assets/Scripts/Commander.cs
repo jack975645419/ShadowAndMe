@@ -40,12 +40,9 @@ public class Commander : Singleton<Commander> {
                 }
             case "createfingereffect":
                 {
-
                     Object e = Resources.Load<GameObject>(("FingerEffect"));
                     var v = MTool.ScreenToWorld(new Vector3(50, 50, 0));
-
                     var a= Instantiate(e, v, Quaternion.identity) as GameObject;
-
                     break;
                 }
         }
