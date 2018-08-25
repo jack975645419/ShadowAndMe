@@ -51,7 +51,7 @@ public class Logger : Singleton<Logger> {
     {
         //Debug.DrawLine(new Vector3(0, 0, 0), new Vector3(1000, 1000, 1));
 
-        
+        LogInfoToScreen("Time:" + Time.time, 999);
     }
 
     public void UpdateInfoText()

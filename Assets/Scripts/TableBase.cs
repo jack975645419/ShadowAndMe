@@ -55,7 +55,7 @@ public class TableBase<SomeTableRow> : MonoBehaviour where SomeTableRow: TableRo
 
     // Use this for initialization
     public virtual void Start () {
-		
+        RefreshOnEditor();
 	}
 
     // Update is called once per frame

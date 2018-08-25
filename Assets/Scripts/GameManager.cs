@@ -48,6 +48,34 @@ public class MTool
         }
         return v;
     }
+
+    public static Vector3 NormalizedToWorld(Vector3 v)
+    {
+        v = NormalizedToScreen(v);
+        v = ScreenToWorld(v);
+        return v;
+    }
+
+    /// <summary>
+    /// 根据斜率得到旋转值，未检查
+    /// </summary>
+    /// <returns></returns>
+    public static Quaternion GetQuaternionByGradient(float K)
+    {
+        return Quaternion.LookRotation(new Vector3(1, K, 0), Vector3.back);
+    }
+
+    /// <summary>
+    /// 函数特性需要测试，未检查[wenjiezou]tocheck
+    /// </summary>
+    /// <param name="K"></param>
+    /// <returns></returns>
+    public static float GetRotationAngleByGradient(float K)
+    {
+        return Mathf.Atan(K);
+    }
+
+
 }
 
 
@@ -60,10 +88,14 @@ public class GameManager : Singleton<GameManager> {
 
     public Table_Touzhiwu m_TableTouzhiwu = null;
     public Table_Paowuxian m_TablePaowuxian = null;
+    public Table_Hits m_TableHits = null;
     public float? ScreenWidth = 0;
     public float? ScreenHeight = 0;
     [Tooltip("调试时绘制抛物线的精细程度，建议取值0.08，值越小越精确"), Range(0.001f, 0.2f)]
     public float PrecisionOfDebugPaintTrack = 0.08f;
+
+    public float MusicStartTime = 0.0f;
+
 
     public override void Start()
     {

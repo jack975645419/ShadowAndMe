@@ -50,7 +50,16 @@ public class TableRow_Paowuxian :TableRowBase
         }
         return ans.ToArray();
     }
-
+    /// <summary>
+    /// 获得斜率
+    /// </summary>
+    /// <returns></returns>
+    public float GetGradientByX(float X)
+    {
+        return 2 * a * X + b;
+    }
+    
+    
 }
 
 public class Table_Paowuxian : TableBase<TableRow_Paowuxian> {
