@@ -38,11 +38,9 @@ public class Commander : Singleton<Commander> {
                     }
                     break;
                 }
-            case "createfingereffect":
+            case "screeninfo":
                 {
-                    Object e = Resources.Load<GameObject>(("FingerEffect"));
-                    var v = MTool.ScreenToWorld(new Vector3(50, 50, 0));
-                    var a= Instantiate(e, v, Quaternion.identity) as GameObject;
+                    Debug.Log("screeninfo" + Screen.width +"," + Screen.height);
                     break;
                 }
         }

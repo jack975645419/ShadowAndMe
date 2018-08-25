@@ -74,6 +74,7 @@ public class Logger : Singleton<Logger> {
         }
 
         //绘制
+        line.positionCount = screenPositions.Length;
         line.SetPositions(screenPositions);
         line.enabled = true;
         if (color == null) color = Color.red;

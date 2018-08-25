@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +13,7 @@ public class TableRow_Touzhiwu:TableRowBase
     public float AttackValue;
 }
 
-public class Table_Touzhiwu : TableBase<TableRow_Touzhiwu> {
-    
-
+public class Table_Touzhiwu : TableBase<TableRow_Touzhiwu>
+{
 
 }

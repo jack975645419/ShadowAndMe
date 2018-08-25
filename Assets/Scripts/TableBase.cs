@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.ComponentModel;
 
+[System.Serializable]
 public class TableRowBase
 {
     [ReadOnly(true)]
@@ -25,12 +26,31 @@ public class TableBase<SomeTableRow> : MonoBehaviour where SomeTableRow: TableRo
 
     [SerializeField]
     public List<SomeTableRow> Dict = new List<SomeTableRow>();
+    public int GetCounts()
+    {
+        return Dict.Count;
+    }
+
+    public SomeTableRow GetValue(int Id)
+    {
+        if(Dict.Count>Id && Id>=0 && Dict[Id].Id == Id)
+        return Dict[Id];
+        return null;
+    }
 
     public virtual void AddOnEditor()
     {
         SomeTableRow S = new SomeTableRow();
-        S.Id = Dict.Count;
         Dict.Add(S);
+        RefreshOnEditor();
+    }
+    public virtual void RefreshOnEditor()
+    {
+        for (int k = 0; k < Dict.Count; k++)
+        {
+            Dict[k].Id = k;
+        }
+
     }
 
     // Use this for initialization

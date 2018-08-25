@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EMessageID
 {
-    Msg_AnimShouldTransform
+    Msg_TableRefresh_TableTouzhiwu
 }
 
 //消息报文
@@ -24,9 +24,9 @@ public class EventManager : Singleton<EventManager> {
     
     public delegate void OnMessageEvent(Msg msg);
     //消息寄存器
-    private Dictionary<EMessageID, List<OnMessageEvent>> m_Dict_EventRegister;
+    private static Dictionary<EMessageID, List<OnMessageEvent>> m_Dict_EventRegister = new Dictionary<EMessageID, List<OnMessageEvent>>();
 
-    public void Register(EMessageID msg_id, OnMessageEvent e)
+    public static void Register(EMessageID msg_id, OnMessageEvent e)
     {
         if (!m_Dict_EventRegister.ContainsKey(msg_id))
         {
@@ -38,7 +38,7 @@ public class EventManager : Singleton<EventManager> {
         }
     }
 
-    public void Unregister(OnMessageEvent e)
+    public static void Unregister(OnMessageEvent e)
     {
         foreach (var i in m_Dict_EventRegister)
         {
@@ -49,7 +49,7 @@ public class EventManager : Singleton<EventManager> {
         }
     }
 
-    public void Send(Msg msg)
+    public static void Send(Msg msg)
     {
         if (m_Dict_EventRegister.ContainsKey(msg.MessageID))
         {
