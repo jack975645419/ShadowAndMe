@@ -80,7 +80,7 @@ public class Table_Paowuxian : TableBase<TableRow_Paowuxian> {
         base.RefreshOnEditor();
 
         GameManager.Instance.Start();
-        for (int k = 0; k<GetCounts(); k++)
+        for (int k = 0; k<GetCount(); k++)
         {
             GetValue(k).RefreshABC();
         }

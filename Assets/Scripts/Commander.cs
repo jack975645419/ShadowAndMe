@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,16 @@ public class Commander : Singleton<Commander> {
             case "screeninfo":
                 {
                     Debug.Log("screeninfo" + Screen.width +"," + Screen.height);
+                    break;
+                }
+            case "atan":// y x ，返回的单位是rad
+                {
+                    if(cmd.Length>=3)
+                    {
+                        var y = Convert.ToDouble(cmd[1]);
+                        var x = Convert.ToDouble(cmd[2]);
+                        Debug.Log(string.Format("Atan of (y={0}, x={1}) is {2}", cmd[1], cmd[2], Mathf.Atan2((float)y, (float)x)));
+                    }
                     break;
                 }
         }

@@ -16,7 +16,11 @@ public class EditorForTablePaowuxian : Editor
         }
         if (GUILayout.Button("Refresh"))
         {
-            t.RefreshOnEditor();
+            GameManager.Instance.RefreshTables();
+        }
+        if(GUI.changed)
+        {
+            GameManager.Instance.RefreshTables();
         }
     }
 }

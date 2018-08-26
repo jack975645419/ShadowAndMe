@@ -9,16 +9,37 @@ public class TableRow_Hits : TableRowBase
     public int Ammu_ID = 0;
     [Tooltip("抛物线类型，对应表格Paowuxian"), Range(0,10)]
     public int Track_ID = 0;
-    [Tooltip("打击点完美打击时间，从BGM播放开始算起"), Range(-0.5f, 700.0f)]
+    [Tooltip("打击点理想打击时间，从BGM播放开始算起"), Range(-0.5f, 700.0f)]
     public float ExpectedTime = 1.0f;
-    [Tooltip("打击点的X坐标，单位是NormalizedScale"), Range(0.0f, 1.0f)]
+    [Tooltip("打击点理想X坐标，单位是NormalizedScale"), Range(0.0f, 1.0f)]
     public float ExpectedXCoordinate = 0.3f;
+    [Tooltip("打击点理想打击角度，正右方是0度，正上方是90度，范围[-180,180)"),Range(-180.0f, 180.0f)]
+    public float ExpectedHitAngle = 90.0f;
+    
     [Tooltip("告警时间，在完美打击时间前若干秒时，开始告警"), Range(0.2f, 3.0f)]
     public float WarningTime = 1.0f;
     [Tooltip("横方向速度，单位是NormalizedScale/s，为0.1时需要从屏幕左侧到右侧需要耗时10s"), Range(0.001f, 5.0f)]
     public float XVelocity = 0.1f;
 
-    public float GetCurIdealXByCurTime()
+
+    protected TableRow_Paowuxian m_Track = null;
+    public TableRow_Paowuxian Track
+    {
+        get
+        {
+            Refresh(); 
+            return m_Track;
+        }
+    }
+    public void Refresh()
+    {
+        Ammu_ID = Mathf.Min(Ammu_ID, GameManager.Instance.m_TableTouzhiwu.GetCount() - 1);
+        Track_ID = Mathf.Min(Track_ID, GameManager.Instance.m_TablePaowuxian.GetCount() - 1);
+
+        m_Track = GameManager.Instance.m_TablePaowuxian.GetValue(Track_ID);
+    }
+
+    public float GetCurXByCurTime()
     {
         //利用当前时间（从BGM开始起计算的时间）获得当前的x，y值
         var curTime = Time.time - GameManager.Instance.MusicStartTime;
@@ -34,10 +55,34 @@ public class TableRow_Hits : TableRowBase
 
         return curX;
     }
-    /*[Tooltip("打击点完美打击方向")]
-    public Vector2 ExpectedHitVector;*/
+
+    /// <summary>
+    /// 归一化坐标下的理想打击点
+    /// </summary>
+    public Vector3 GetExpectedPosInNormalized()
+    {
+        return Track.GetPointByX(ExpectedXCoordinate);
+    }
+    public Vector3 GetExpectedPosInWorld()
+    {
+        return MTool.NormalizedToWorld(GetExpectedPosInNormalized());
+    }
+
 }
 public class Table_Hits : TableBase<TableRow_Hits> {
 
-    
+    [Tooltip("误差角度，角度制单位，在理想打击角度的基础上±AllowedErrorAngle内均算有效打击"), Range(-180, 180)]
+    public float AllowedErrorAngle = 45.0f;
+
+    public override void RefreshOnEditor()
+    {
+        base.RefreshOnEditor();
+        for(int k = 0; k<GetCount(); k++)
+        {
+            Dict[k].Refresh();
+        }
+        
+        ExpectedAngleDrawerManager.Instance.OnRefreshToShowAngles();
+    }
+
 }

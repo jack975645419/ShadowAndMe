@@ -22,14 +22,14 @@ public class AmmuGenerator : Singleton<AmmuGenerator> {
     void Update () {
         //在打击点来临前5秒产生投掷物
         var tb = GameManager.Instance.m_TableHits;
-        for(int k = 0; k<tb.GetCounts(); k++)
+        for(int k = 0; k<tb.GetCount(); k++)
         {
             var hitInfo = tb.GetValue(k);
             if (HitIDGenerated.Contains(hitInfo.Id))
             {
                 continue;
             }
-            var curX = hitInfo.GetCurIdealXByCurTime();
+            var curX = hitInfo.GetCurXByCurTime();
             if ( curX>=XToBeGeneratedFrom )
             {
                 var ammuInfo = GameManager.Instance.m_TableTouzhiwu.GetValue(hitInfo.Ammu_ID);

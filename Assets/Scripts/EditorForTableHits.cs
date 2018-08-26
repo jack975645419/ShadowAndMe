@@ -16,7 +16,14 @@ public class EditorForTableHits : Editor
         }
         if (GUILayout.Button("Refresh"))
         {
-            t.RefreshOnEditor();
+            GameManager.Instance.RefreshTables();
+        }
+
+        //如果有改动，直接通知EADManager
+        if (GUI.changed)
+        {
+            GameManager.Instance.RefreshTables();
+            ExpectedAngleDrawerManager.Instance.OnRefreshToShowAngles();
         }
     }
 }

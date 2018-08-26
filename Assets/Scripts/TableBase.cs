@@ -26,7 +26,7 @@ public class TableBase<SomeTableRow> : MonoBehaviour where SomeTableRow: TableRo
 
     [SerializeField]
     public List<SomeTableRow> Dict = new List<SomeTableRow>();
-    public int GetCounts()
+    public int GetCount()
     {
         return Dict.Count;
     }

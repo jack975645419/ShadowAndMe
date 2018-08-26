@@ -4,7 +4,13 @@ using UnityEngine;
 
 public enum EMessageID
 {
-    Msg_TableRefresh_TableTouzhiwu
+    //有效击中事件
+    Msg_Hit,
+    //报文参数：位置、击打向量、误差角
+
+    //Miss事件
+    Msg_Miss
+    //报文参数：位置、击打向量、误差角
 }
 
 //消息报文
