@@ -13,8 +13,30 @@ public class TableRow_Hits : TableRowBase
     public float ExpectedTime = 1.0f;
     [Tooltip("打击点理想X坐标，单位是NormalizedScale"), Range(0.0f, 1.0f)]
     public float ExpectedXCoordinate = 0.3f;
-    [Tooltip("打击点理想打击角度，正右方是0度，正上方是90度，范围[-180,180)"),Range(-180.0f, 180.0f)]
-    public float ExpectedHitAngle = 90.0f;
+    //[Tooltip("打击点理想打击角度，正右方是0度，正上方是90度，范围[-180,180)"),Range(-180.0f, 180.0f)]
+    public float ExpectedHitAngle
+    {
+        get
+        {
+            if(m_Track!=null)
+            {
+                var ans = MTool.GetRotationAngleByGradient( m_Track.GetGradientByX(ExpectedXCoordinate)) * Mathf.Rad2Deg  + 90.0f;
+                return MTool.NormalizeAngleBetween_n180top180(ans);
+            }
+            return 0;
+        }
+    }
+
+    public float GetCurrentExpectedHitAngle()
+    {
+        if (m_Track != null)
+        {
+            var ans = MTool.GetRotationAngleByGradient(m_Track.GetGradientByX(GetCurXByCurTime())) * Mathf.Rad2Deg + 90.0f;
+            return MTool.NormalizeAngleBetween_n180top180(ans);
+        }
+        return 0;
+    }
+
     
     [Tooltip("告警时间，在完美打击时间前若干秒时，开始告警"), Range(0.2f, 3.0f)]
     public float WarningTime = 1.0f;
@@ -83,6 +105,23 @@ public class Table_Hits : TableBase<TableRow_Hits> {
         }
         
         ExpectedAngleDrawerManager.Instance.OnRefreshToShowAngles();
+    }
+
+    public void GenerateRandomly(int n)
+    {
+        Dict.Clear();
+        for(int k = 0; k<n; k++)
+        {
+            var r = new TableRow_Hits();
+            r.Id = k;
+            r.Ammu_ID = Random.Range(0, GameManager.Instance.m_TableTouzhiwu.GetCount());
+            r.Track_ID = Random.Range(0, GameManager.Instance.m_TablePaowuxian.GetCount());
+            r.ExpectedTime = k * 2.0f + Random.Range(-2.0f, +2.0f);
+            r.ExpectedTime = Mathf.Max(3.0f, r.ExpectedTime);
+            r.ExpectedXCoordinate = Random.Range(0.1f, 0.9f);
+            r.XVelocity = Random.Range(0.02f, 0.5f);
+            Dict.Add(r);
+        }
     }
 
 }

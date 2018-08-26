@@ -54,6 +54,27 @@ public class Commander : Singleton<Commander> {
                     }
                     break;
                 }
+            case "mod":
+                {
+                    if(cmd.Length>=3)
+                    {
+                        var y = Convert.ToDouble(cmd[1]);
+                        var x = Convert.ToDouble(cmd[2]);
+                        var a = y % x;
+                        Debug.Log("a mod b=" + a);
+                    }
+                    break;
+                }
+            case "nor360":
+                {
+                    if(cmd.Length>=2)
+                    {
+                        var a = Convert.ToDouble(cmd[1]);
+                        Debug.Log("nor " + a + " to-180,180 is " + MTool.NormalizeAngleBetween_n180top180((float)a));
+                    }
+                    break;
+                }
+
         }
     }
 }

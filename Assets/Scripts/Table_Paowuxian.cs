@@ -56,7 +56,10 @@ public class TableRow_Paowuxian :TableRowBase
     /// <returns></returns>
     public float GetGradientByX(float X)
     {
-        return 2 * a * X + b;
+        var originalK = 2 * a * X + b;
+        
+        //目的是适应屏幕
+        return originalK /( (float)GameManager.Instance.ScreenWidth / (float)GameManager.Instance.ScreenHeight);
     }
     
     

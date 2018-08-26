@@ -68,7 +68,7 @@ public class Ammu : MonoBehaviour {
                 var hitVectorDirection = g.swipeVector;
                 var hitAngle = MTool.Vector2Deg(hitVectorDirection);
 
-                var errorAngle = MTool.GetErrorBetween(hitAngle, HitInfo.ExpectedHitAngle);
+                var errorAngle = MTool.GetErrorBetweenIncludingVertical(hitAngle, HitInfo.GetCurrentExpectedHitAngle());
                 if(errorAngle<=m_AllowedErrorAngle)
                 {
                     Destroy(gameObject);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(Table_Touzhiwu))]
 public class EditorForTableTouzhiwu : Editor
 {
@@ -25,3 +25,4 @@ public class EditorForTableTouzhiwu : Editor
     }
 }
 
+#endif

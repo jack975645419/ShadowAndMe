@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(ExpectedAngleDrawer))]
 public class EditorForExpectedAngleDrawer : Editor
 {
@@ -17,3 +17,4 @@ public class EditorForExpectedAngleDrawer : Editor
         }
     }
 }
+#endif

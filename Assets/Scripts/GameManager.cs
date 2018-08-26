@@ -104,6 +104,25 @@ public class MTool
             Mathf.Abs(angle1InDeg - angle2InDeg - 360.0f)
             );
     }
+
+    public static float GetErrorBetweenIncludingVertical(float angle1InDeg, float angle2InDeg)
+    {
+        var e1 = GetErrorBetween(angle1InDeg, angle2InDeg);
+        var e2 = GetErrorBetween(MTool.NormalizeAngleBetween_n180top180(angle1InDeg + 180), angle2InDeg);
+        return Mathf.Min(e1, e2);
+    }
+
+    /// <summary>
+    /// 
+    /// C#的模是考虑负数的模如 -10 % 3 = -1
+    /// </summary>
+    /// <param name="a"></param>
+    public static float NormalizeAngleBetween_n180top180(float a)
+    {
+        if (a <= 180 && a >= -180) return a;
+        else return a >= 0 ? (a + 180) % 360 - 180 : (a - 180) % 360 + 180;
+    }
+
 }
 
 
@@ -200,12 +219,14 @@ public class GameManager : Singleton<GameManager> {
         m_TablePaowuxian.RefreshOnEditor();
         m_TableHits.RefreshOnEditor();
     }
+
+#if UNITY_EDITOR
     [MenuItem("腾讯迷你游戏项目/RefreshTables")]
     public static void Menu_RefreshTables()
     {
         GameManager.Instance.RefreshTables();
     }
+#endif 
 
-    
 
 }

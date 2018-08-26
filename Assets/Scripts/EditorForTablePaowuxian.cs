@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(Table_Paowuxian))]
 public class EditorForTablePaowuxian : Editor
 {
@@ -24,3 +24,4 @@ public class EditorForTablePaowuxian : Editor
         }
     }
 }
+#endif
