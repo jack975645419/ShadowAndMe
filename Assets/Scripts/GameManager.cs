@@ -124,7 +124,7 @@ public class GameManager : Singleton<GameManager> {
     public float MusicStartTime = 0.0f;
     [Tooltip("泼墨效果")]
     public GameObject InkEffect = null;
-
+    public Collider2D ForbiddenZoneC2D = null;
 
     public override void Start()
     {
@@ -205,4 +205,7 @@ public class GameManager : Singleton<GameManager> {
     {
         GameManager.Instance.RefreshTables();
     }
+
+    
+
 }

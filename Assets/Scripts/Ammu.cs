@@ -12,6 +12,7 @@ public class Ammu : MonoBehaviour {
     public TableRow_Hits HitInfo = null;
     private Vector3 CurrentPositionInWorld;
     public float m_AllowedErrorAngle = 0;
+    public bool HasHitPlayer = false;
 	// Use this for initialization
 	void Start () {
         m_R2D = GetComponent<Rigidbody2D>();
@@ -26,24 +27,28 @@ public class Ammu : MonoBehaviour {
 
         if (HitInfo == null) return;
 
-        var curX = HitInfo.GetCurXByCurTime();
+        if(!HasHitPlayer)
+        {
 
-        //显示合法
-        if (curX >= -0.1f && curX<=1.1f)
-        {
-            //计算出y值
-            var curY = HitInfo.Track.GetYByX(curX);
-            var curK = HitInfo.Track.GetGradientByX(curX);
-            //var curQuaternion = MTool.GetQuaternionByGradient(curK);
-            var curRotationAngle = MTool.GetRotationAngleByGradient(curK);
-            CurrentPositionInWorld = MTool.NormalizedToWorld( new Vector2(curX, curY));
-            m_R2D.MovePosition(CurrentPositionInWorld);
-            m_R2D.rotation = curRotationAngle * Mathf.Rad2Deg;
-        }
-        //不用显示
-        else if(curX>1.1f)
-        {
-            Destroy(gameObject);
+            var curX = HitInfo.GetCurXByCurTime();
+
+            //显示合法
+            if (curX >= -0.1f && curX <= 1.1f)
+            {
+                //计算出y值
+                var curY = HitInfo.Track.GetYByX(curX);
+                var curK = HitInfo.Track.GetGradientByX(curX);
+                //var curQuaternion = MTool.GetQuaternionByGradient(curK);
+                var curRotationAngle = MTool.GetRotationAngleByGradient(curK);
+                CurrentPositionInWorld = MTool.NormalizedToWorld(new Vector2(curX, curY));
+                m_R2D.MovePosition(CurrentPositionInWorld);
+                m_R2D.rotation = curRotationAngle * Mathf.Rad2Deg;
+            }
+            //不用显示
+            else if (curX > 1.1f)
+            {
+                Destroy(gameObject);
+            }
         }
 	}
 
@@ -77,6 +82,10 @@ public class Ammu : MonoBehaviour {
         }
     }
 
-
+    public void HitPlayer()
+    {
+        HasHitPlayer = true;
+        Destroy(gameObject, 2.0f);
+    }
 
 }
