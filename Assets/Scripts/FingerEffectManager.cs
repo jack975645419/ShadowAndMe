@@ -47,10 +47,14 @@ public class FingerEffectManager : Singleton<FingerEffectManager> {
 
     public void OnSwipeEnd(Gesture g)
     {
-        if(FingerEffects.ContainsKey(g.fingerIndex))
-        {
-            var emission = FingerEffects[g.fingerIndex].emission;
-            emission.rateOverDistance = 0;
-        }
+        
+                if(FingerEffects.ContainsKey(g.fingerIndex))
+                {
+                    var emission = FingerEffects[g.fingerIndex].emission;
+            //      emission.rateOverDistance = 0; //在粒子移动时产生，但最终粒子不会消失
+            emission.rateOverTime = 0;       //单位时间内产生的粒子
+            FingerEffects.Remove(g.fingerIndex);      //释放掉该手势
+        }          
+        
     }
 }
